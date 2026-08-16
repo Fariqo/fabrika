@@ -1,5 +1,7 @@
 def selam_ver(isim):
-    print(f"Merhaba, {isim}!")
-    x=1  # ← HATA: boşluk yok, Ruff bunu yakalayacak
+    """İsme selam verir."""
+    mesaj = f"Merhaba, {isim}!"
+    print(mesaj)
+    return mesaj
 
 selam_ver("Lonca")

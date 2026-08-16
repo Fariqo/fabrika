@@ -1,24 +1,30 @@
-name: Fabrika Bandı - Yargıçlar
+name: Fabrika Bandı - Chimera Mahkemesi
 
 on: [push]
 
 jobs:
-  yargila:
+  chimera-yargila:
     runs-on: ubuntu-latest
+    name: Üç Başlı Yargıç
     steps:
       - name: Kodu çek
         uses: actions/checkout@v4
-
-      - name: Python kur
-        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          fetch-depth: 0
 
-      - name: Yargıcı kur (Ruff)
-        run: pip install ruff
+      - name: MegaLinter'ı uyandır
+        uses: oxsecurity/megalinter@v8
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ENABLE_LINTERS: PYTHON_RUFF,JAVASCRIPT_ES,HTML_HTMLHINT,MARKDOWN_MARKDOWNLINT
+          DISABLE_ERRORS: false
 
-      - name: Kodu yargıla
-        run: ruff check .
-
-      - name: Test et
+      - name: Python'u çalıştır
         run: python merhaba.py
+
+      - name: JavaScript'i çalıştır
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node merhaba.js
