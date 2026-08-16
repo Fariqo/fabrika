@@ -2,12 +2,10 @@ package main
 
 import "fmt"
 
-func selamVer(isim string) string {
-    mesaj := fmt.Sprintf("Merhaba, %s!", isim)
-    fmt.Println(mesaj)
-    return mesaj
+func selamVer(isim string) {
+	fmt.Printf("Merhaba, %s!\n", isim)
 }
 
 func main() {
-    selamVer("Lonca")
+	selamVer("Lonca")
 }
