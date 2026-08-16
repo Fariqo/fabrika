@@ -1,16 +1,24 @@
-name: İlk Robot Nöbetçi
+name: Fabrika Bandı - Yargıçlar
 
 on: [push]
 
 jobs:
-  uyan-ve-selamla:
+  yargila:
     runs-on: ubuntu-latest
     steps:
-      - name: Selam ver
-        run: echo "🤖 Robot uyandı! Kod geldi, bekliyorum."
+      - name: Kodu çek
+        uses: actions/checkout@v4
 
-      - name: Tarih söyle
-        run: date
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: Nöbet bitti
-        run: echo "✅ Kontrol tamam. Uykuya dönüyorum."
+      - name: Yargıcı kur (Ruff)
+        run: pip install ruff
+
+      - name: Kodu yargıla
+        run: ruff check .
+
+      - name: Test et
+        run: python merhaba.py
