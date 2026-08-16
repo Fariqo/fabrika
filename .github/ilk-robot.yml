@@ -1,0 +1,16 @@
+name: İlk Robot Nöbetçi
+
+on: [push]
+
+jobs:
+  uyan-ve-selamla:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Selam ver
+        run: echo "🤖 Robot uyandı! Kod geldi, bekliyorum."
+
+      - name: Tarih söyle
+        run: date
+
+      - name: Nöbet bitti
+        run: echo "✅ Kontrol tamam. Uykuya dönüyorum."
