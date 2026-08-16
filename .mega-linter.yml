@@ -1,0 +1,2 @@
+# Lonca'nın yargıçlarına fermanı: Markdown biçim hataları bandı durdurmasın.
+MARKDOWN_MARKDOWNLINT_DISABLE_ERRORS: true

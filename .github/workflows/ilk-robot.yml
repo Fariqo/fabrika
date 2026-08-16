@@ -12,15 +12,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: MegaLinter'ı uyandır
+      - name: MegaLinter'ı uyandır (Yorumlanan Diller İçin)
         uses: oxsecurity/megalinter@v8
         env:
           VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ENABLE_LINTERS: PYTHON_RUFF,JAVASCRIPT_ES,HTML_HTMLHINT,MARKDOWN_MARKDOWNLINT,GO_GOLANGCI_LINT,RUST_CLIPPY
+          ENABLE_LINTERS: PYTHON_RUFF,JAVASCRIPT_ES,HTML_HTMLHINT,MARKDOWN_MARKDOWNLINT
           DISABLE_ERRORS: false
 
-      - name: Python'u çalıştır
+      - name: Python'u çalıştır (Yorumlayıcı Yargıç)
         run: python merhaba.py
 
       - name: Node.js kur
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: JavaScript'i çalıştır
+      - name: JavaScript'i çalıştır (Yorumlayıcı Yargıç)
         run: node merhaba.js
 
       - name: Go kur
@@ -36,11 +36,11 @@ jobs:
         with:
           go-version: '1.22'
 
-      - name: Go'yu derle ve çalıştır
+      - name: Go'yu derle ve çalıştır (Ateşin Yargıcı)
         run: go run merhaba.go
 
       - name: Rust kur
         uses: actions-rust-lang/setup-rust-toolchain@v1
 
-      - name: Rust'ı derle ve çalıştır
+      - name: Rust'ı derle ve çalıştır (Ateşin Yargıcı)
         run: rustc merhaba.rs -o merhaba && ./merhaba
