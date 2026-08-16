@@ -17,7 +17,7 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ENABLE_LINTERS: PYTHON_RUFF,JAVASCRIPT_ES,HTML_HTMLHINT,MARKDOWN_MARKDOWNLINT
+          ENABLE_LINTERS: PYTHON_RUFF,JAVASCRIPT_ES,HTML_HTMLHINT,MARKDOWN_MARKDOWNLINT,GO_GOLANGCI_LINT,RUST_CLIPPY
           DISABLE_ERRORS: false
 
       - name: Python'u çalıştır
@@ -28,3 +28,16 @@ jobs:
         with:
           node-version: '22'
       - run: node merhaba.js
+            - name: Go kur
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Go'yu derle ve çalıştır
+        run: go run merhaba.go
+
+      - name: Rust kur
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Rust'ı derle ve çalıştır
+        run: rustc merhaba.rs -o merhaba && ./merhaba
